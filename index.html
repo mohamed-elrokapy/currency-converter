@@ -3,57 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>currency-converter</title>
+    <meta
+      name="description"
+      content="Convert between about 150 currencies using live exchange rates." />
+    <meta name="theme-color" content="#1f4d3a" />
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section>
-      <div class="header">
-        <div class="head">
-          <div class="img">
-            <img
-              src="coins-paper-money-globe-white-statistic-form-background_1387-296.avif"
-              alt="aaaaaaaaaaa" />
-          </div>
-          <p>currency-converter</p>
-        </div>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <h1 class="wordmark">Currency Converter</h1>
+        <p class="tagline">Live exchange rates, about 150 currencies</p>
       </div>
-      <div class="main">
-        <div class="main_content">
-          <h1 class="amount">Amount</h1>
-          <div class="switcher">
-            <input
-              class="amount_value"
-              type="text"
-              placeholder="1 by default"
-              style="display: block" />
-            <button class="turn_event">switch</button>
-          </div>
-          <div class="currencies">
-            <div class="base">
-              <img
-                src="https://flagsapi.com/AE/shiny/32.png"
-                alt=""
-                class="base_img" />
-              <select name="" id="base_country">
-                <option value="">ssssssss</option>
-              </select>
-            </div>
-            <div class="tunrned">
-              <img
-                src="https://flagsapi.com/AE/shiny/32.png"
-                alt=""
-                class="turned_img" /><select name="" id="turned_country">
-                <option value="">ssssssssss</option>
-              </select>
-            </div>
-            <button class="convert">convert</button>
-          </div>
-          <div class="result"></div>
-        </div>
-      </div>
-    </section>
+    </header>
 
+    <main>
+      <form id="form" class="ledger" novalidate autocomplete="off">
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input
+            id="amount"
+            name="amount"
+            type="text"
+            inputmode="decimal"
+            placeholder="1"
+            aria-describedby="amount-hint amount-error" />
+          <p class="hint" id="amount-hint">Leave empty to convert 1.</p>
+          <p class="field-error" id="amount-error" role="alert"></p>
+        </div>
+
+        <div class="pair">
+          <div class="field">
+            <label for="from">From</label>
+            <select id="from" name="from"></select>
+          </div>
+
+          <button type="button" id="swap" class="swap" aria-label="Swap the two currencies">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4m4 4H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="field">
+            <label for="to">To</label>
+            <select id="to" name="to"></select>
+          </div>
+        </div>
+
+        <button type="submit" class="convert">Convert</button>
+      </form>
+
+      <section class="result" id="result" data-state="loading" aria-live="polite" aria-busy="true" aria-labelledby="result-title">
+        <h2 class="visually-hidden" id="result-title">Result</h2>
+        <div class="result-body" id="result-body"></div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p id="updated" class="updated"></p>
+      <p class="attribution">
+        Rates by <a href="https://www.exchangerate-api.com" rel="noopener">ExchangeRate-API</a>. Reference rates, not an offer to trade.
+      </p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="currencies.js"></script>
+    <script src="convert.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
